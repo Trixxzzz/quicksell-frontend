@@ -1,23 +1,40 @@
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
+import Header from './components/Header';
+import Board from './components/Board';
+import { fetchData } from './utils/api';
+import { groupTickets, sortTickets } from './utils/dataManipulation';
 import './App.css';
 
 function App() {
+  const [tickets, setTickets] = useState([]);
+  const [users, setUsers] = useState([]);
+  const [groupBy, setGroupBy] = useState(localStorage.getItem('groupBy') || 'status');
+  const [sortBy, setSortBy] = useState(localStorage.getItem('sortBy') || 'priority');
+
+  useEffect(() => {
+    fetchData().then(data => {
+      setTickets(data.tickets);
+      setUsers(data.users);
+    });
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('groupBy', groupBy);
+    localStorage.setItem('sortBy', sortBy);
+  }, [groupBy, sortBy]);
+
+  const groupedTickets = groupTickets(tickets, groupBy);
+  const sortedTickets = sortTickets(groupedTickets, sortBy);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <Header 
+        groupBy={groupBy} 
+        setGroupBy={setGroupBy} 
+        sortBy={sortBy} 
+        setSortBy={setSortBy} 
+      />
+      <Board tickets={sortedTickets} users={users} groupBy={groupBy} />
     </div>
   );
 }

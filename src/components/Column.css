@@ -1,0 +1,73 @@
+.column {
+    flex: 0 0 300px;
+    margin-right: 20px;
+    background-color: #f4f5f8;
+    border-radius: 8px;
+    padding: 15px;
+
+    
+  }
+.icon{
+    justify-content: space-between;
+    cursor: pointer;
+    margin-top: 15px;
+    margin-left: 5px;
+    padding-right: 10px;
+
+  }
+  
+  .dis-icon{
+    padding-right: 10px;
+    max-width: 30px;
+  }
+  .count{
+    color: grey;
+    font-size: 14px;
+    margin-left: 15px;
+  }
+  .headings{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .column:last-child {
+    margin-right: 0;
+  }
+  
+  .column-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    
+  }
+  
+  .column-title::before {
+    content: '';
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 8px;
+  }
+  
+  .column-title[data-status="Todo"]::before {
+    background-color: grey;
+  }
+  
+  .column-title[data-status="In Progress"]::before {
+    background-color: yellow;
+  }
+  
+  .column-title[data-status="Done"]::before {
+    background-color: blue;
+  }
+  
+  .card-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  

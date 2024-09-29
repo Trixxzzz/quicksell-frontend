@@ -1,0 +1,24 @@
+.board {
+  display: flex;
+  overflow-x: auto;
+  padding-bottom: 20px;
+  
+  scrollbar-width: none;
+  -ms-overflow-style: none; 
+}
+
+.board::-webkit-scrollbar {
+  display: none; 
+}
+
+
+  @media (max-width: 768px) {
+    .board {
+      flex-direction: column;
+    }
+  
+    .column {
+      margin-right: 0;
+      margin-bottom: 20px;
+    }
+  }
